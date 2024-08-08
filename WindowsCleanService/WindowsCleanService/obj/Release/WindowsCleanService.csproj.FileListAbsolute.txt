@@ -1,0 +1,13 @@
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\bin\Release\WindowsCleanService.exe.config
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\bin\Release\WindowsCleanService.exe
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\bin\Release\WindowsCleanService.pdb
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\bin\Release\MetroFramework.dll
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\bin\Release\MetroFramework.Fonts.dll
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.csproj.AssemblyReference.cache
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.FormMain.resources
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.Properties.Resources.resources
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.csproj.GenerateResource.cache
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.csproj.CoreCompileInputs.cache
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsC.9B965C15.Up2Date
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.exe
+C:\Users\GabrielAlmeida\source\repos\WindowsCleanService\WindowsCleanService\obj\Release\WindowsCleanService.pdb
