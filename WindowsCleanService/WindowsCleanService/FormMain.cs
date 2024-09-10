@@ -28,6 +28,7 @@ namespace WindowsCleanService
 
         private void btn_execute_Click(object sender, EventArgs e)
         {
+            long totalSize = 0;
             listBoxLogs.Items.Clear();
             iniFile.Write("temp", cbTemp.Checked.ToString(), "configuracoes");
             iniFile.Write("prefetch", cbPrefetch.Checked.ToString(), "configuracoes");
@@ -43,46 +44,48 @@ namespace WindowsCleanService
             string current_partition = Path.GetPathRoot(Environment.CurrentDirectory);
 
             if (cbTemp.Checked)
-                ClearFolder(Path.GetTempPath());
+                totalSize += ClearFolder(Path.GetTempPath());
 
             if (cbPrefetch.Checked)
-                ClearFolder(Path.Combine(current_partition, "Windows", "Prefetch"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "Windows", "Prefetch"));
 
             if (cbInstallerTemp.Checked)
-                ClearFolder(Path.Combine(current_partition, "Windows", "Installer"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "Windows", "Installer"));
 
             if (cbDownloadTemp.Checked)
-                ClearFolder(Path.Combine(current_partition, "Windows", "SoftwareDistribution", "Download"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "Windows", "SoftwareDistribution", "Download"));
 
             if (cbWindowsLogs.Checked)
-                ClearFolder(Path.Combine(current_partition, "Windows", "Logs"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "Windows", "Logs"));
 
             if (cbRecycleBin.Checked)
-                ClearFolder(Path.Combine(current_partition, "$Recycle.Bin"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "$Recycle.Bin"));
 
             if (cbUserTemp.Checked)
-                ClearFolder(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp"));
+                totalSize += ClearFolder(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Temp"));
 
             if (cbWindowsTemp.Checked)
-                ClearFolder(Path.Combine(current_partition, "Windows", "Temp"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "Windows", "Temp"));
 
             if (cbWindowsErrorReports.Checked)
-                ClearFolder(Path.Combine(current_partition, "ProgramData", "Microsoft", "Windows", "WER", "ReportQueue"));
+                totalSize += ClearFolder(Path.Combine(current_partition, "ProgramData", "Microsoft", "Windows", "WER", "ReportQueue"));
 
             if (cbCleanMgr.Checked)
                 Process.Start(current_partition + @"\Windows\system32\cleanmgr.exe");
 
-            MessageBox.Show("Limpeza concluída com sucesso!");
+            MessageBox.Show($"Limpeza concluída com sucesso! {totalSize} bytes removidos.");
         }
 
-        private void ClearFolder(string FolderName)
+        private long ClearFolder(string FolderName)
         {
+            long totalSize = 0;
             DirectoryInfo dir = new DirectoryInfo(FolderName);
             foreach (FileInfo fi in dir.GetFiles())
             {
                 try
                 {
-                    listBoxLogs.Items.Add(fi.FullName);
+                    listBoxLogs.Items.Add(fi.Length + " bytes - " + fi.FullName);
+                    totalSize += fi.Length;
                     Application.DoEvents();
                     fi.Delete();
                 }
@@ -91,7 +94,7 @@ namespace WindowsCleanService
 
             foreach (DirectoryInfo di in dir.GetDirectories())
             {
-                ClearFolder(di.FullName);
+                totalSize += ClearFolder(di.FullName);
                 try
                 {
                     listBoxLogs.Items.Add(di.FullName);
@@ -100,6 +103,7 @@ namespace WindowsCleanService
                 }
                 catch (Exception) { }
             }
+            return totalSize;
         }
     }
 }
