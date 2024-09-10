@@ -84,10 +84,10 @@ namespace WindowsCleanService
             {
                 try
                 {
-                    listBoxLogs.Items.Add(fi.Length + " bytes - " + fi.FullName);
                     totalSize += fi.Length;
                     Application.DoEvents();
                     fi.Delete();
+                    listBoxLogs.Items.Add(fi.Length + " bytes - " + fi.FullName);
                 }
                 catch (Exception) { }
             }
